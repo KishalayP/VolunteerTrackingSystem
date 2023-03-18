@@ -1,13 +1,13 @@
-package com.example.sprinbootvolunteertracking;
+package com.spring.volunteertracking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SprinbootVolunteerTrackingApplication {
+public class VolunteerTrackingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SprinbootVolunteerTrackingApplication.class, args);
+        SpringApplication.run(VolunteerTrackingApplication.class, args);
     }
 
 }
