@@ -16,7 +16,7 @@ public class Swagger3Config {
                         .title("Volunteer Tracking Application")
                         .version(appVersion)
                         .description(appDesciption)
-                        .termsOfService("http://swagger.io/terms/")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+                        .termsOfService("https://swagger.io/terms/")
+                        .license(new License().name("Apache 2.0").url("https://springdoc.org")));
     }
 }
