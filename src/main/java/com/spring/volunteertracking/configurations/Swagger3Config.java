@@ -13,7 +13,7 @@ public class Swagger3Config {
     public OpenAPI customOpenAPI(@Value("${application-description}") String appDesciption, @Value("${application-version}") String appVersion) {
         return new OpenAPI()
                 .info(new Info()
-                        .title("sample application API")
+                        .title("Volunteer Tracking Application")
                         .version(appVersion)
                         .description(appDesciption)
                         .termsOfService("http://swagger.io/terms/")
