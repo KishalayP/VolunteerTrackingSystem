@@ -19,8 +19,10 @@ import java.util.UUID;
 public class UsersPwdEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "UserID")
     private UUID userId;
+
     @Basic
     @Column(name = "PASSWORD")
     private String password;
