@@ -12,8 +12,8 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
+@ToString
 @Entity
 @Table(name = "USERS_PWD", schema = "PUBLIC", catalog = "TEST")
 public class UsersPwdEntity {

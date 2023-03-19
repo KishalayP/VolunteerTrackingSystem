@@ -11,7 +11,6 @@ import java.sql.Date;
 @Entity
 @Table(name = "USERS", schema = "PUBLIC", catalog = "TEST")
 public class UsersEntity {
-
     @Id
     @Column(name = "EMAIL")
     private String email;
