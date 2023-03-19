@@ -1,8 +1,10 @@
 package com.spring.volunteertracking.models.dao;
 
+import com.spring.volunteertracking.models.dto.RegistrationResponseDto;
 import com.spring.volunteertracking.models.dto.UserDto;
 import com.spring.volunteertracking.models.entities.UsersEntity;
 import com.spring.volunteertracking.models.entities.UsersPwdEntity;
+import com.spring.volunteertracking.services.encryption.PasswordManagementService;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,12 +16,14 @@ import java.util.List;
 public class UsersEntityRepository implements UserDao {
 
     private final EntityManager entityManager;
+    private final PasswordManagementService passwordManagementService;
 
-    public UsersEntityRepository(EntityManager entityManager) {
+    public UsersEntityRepository(EntityManager entityManager, PasswordManagementService passwordManagementService) {
         this.entityManager = entityManager;
+        this.passwordManagementService = passwordManagementService;
     }
 
-    private static UsersEntity getUsersEntity(UserDto user, UsersPwdEntity usersPwdEntity) {
+    private UsersEntity getUsersEntity(UserDto user, UsersPwdEntity usersPwdEntity) {
         UsersEntity usersEntity = new UsersEntity();
         usersEntity.setName(user.getName());
         usersEntity.setLocation(user.getLocation());
@@ -30,19 +34,20 @@ public class UsersEntityRepository implements UserDao {
         return usersEntity;
     }
 
-    private static UsersPwdEntity getUsersPwdEntity(UserDto user) {
+    private UsersPwdEntity getUsersPwdEntity(UserDto user) {
         UsersPwdEntity usersPwdEntity = new UsersPwdEntity();
-        usersPwdEntity.setPassword(user.getPassword());
+        String hashPassword = passwordManagementService.hashPassword(user.getPassword());
+        usersPwdEntity.setPassword(hashPassword);
         return usersPwdEntity;
     }
 
     @Override
     @Transactional
-    public String registerUser(UserDto user) {
+    public RegistrationResponseDto registerUser(UserDto user) {
         UsersPwdEntity usersPwdEntity = getUsersPwdEntity(user);
         UsersEntity usersEntity = getUsersEntity(user, usersPwdEntity);
         entityManager.persist(usersEntity);
-        return String.format("User Registered Successfully, with ID %s -> for Email ID %s", usersPwdEntity.getUserId(), usersEntity.getEmail());
+        return new RegistrationResponseDto(usersPwdEntity.getUserId(), "User Registered Successfully", usersEntity.getEmail(), usersEntity.getName());
     }
 
     @Override

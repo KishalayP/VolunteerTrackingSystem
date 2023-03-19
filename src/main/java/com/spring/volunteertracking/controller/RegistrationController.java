@@ -1,5 +1,6 @@
 package com.spring.volunteertracking.controller;
 
+import com.spring.volunteertracking.models.dto.RegistrationResponseDto;
 import com.spring.volunteertracking.models.dto.UserDto;
 import com.spring.volunteertracking.models.entities.UsersEntity;
 import com.spring.volunteertracking.services.registration.RegisterUsersService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 @Controller("/registration")
@@ -24,7 +27,7 @@ public class RegistrationController {
 
     @PostMapping(value = "/createUser")
     @ResponseBody
-    public String registerUser(@RequestBody UserDto user) {
+    public RegistrationResponseDto registerUser(@Valid @RequestBody UserDto user) throws InvalidKeySpecException {
         log.info("Creating User :{}", user.getName());
         return registerUsersService.registerUser(user);
     }
