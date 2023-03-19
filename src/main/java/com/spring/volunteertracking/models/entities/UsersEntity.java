@@ -11,25 +11,25 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "USERS", schema = "VTDB", catalog = "DEFAULT")
+@Table(name = "USERS", schema = "PUBLIC", catalog = "TEST")
 public class UsersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID", referencedColumnName = "UserID")
+    private UsersPwdEntity usersPwdEntity;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "ID")
     private UUID id;
- 
     @Column(name = "Name")
     private String name;
- 
     @Column(name = "Location")
     private String location;
- 
     @Column(name = "Date of Birth")
     private Date dateOfBirth;
- 
     @Column(name = "Contact Number")
     private String contactNumber;
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

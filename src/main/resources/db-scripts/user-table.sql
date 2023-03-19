@@ -1,5 +1,4 @@
-create schema VTDB;
-create table VTDB.users
+create table TEST.PUBLIC.users
 (
     id               UUID        not null,
     "Name"           VARCHAR(50) not null,
@@ -10,4 +9,3 @@ create table VTDB.users
         primary key (id)
 );
 
-comment on table VTDB.users is 'Registered Users';
