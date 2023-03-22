@@ -5,11 +5,11 @@ import com.spring.volunteertracking.models.dto.UserDto;
 import com.spring.volunteertracking.models.entities.UsersEntity;
 import com.spring.volunteertracking.models.entities.UsersPwdEntity;
 import com.spring.volunteertracking.services.encryption.PasswordManagementService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
