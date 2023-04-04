@@ -11,12 +11,11 @@ import org.springframework.context.annotation.Configuration;
 public class Swagger3Config {
     @Bean
     public OpenAPI customOpenAPI(@Value("${application-description}") String appDescription, @Value("${application-version}") String appVersion) {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("Volunteer Tracking Application")
-                        .version(appVersion)
-                        .description(appDescription)
-                        .termsOfService("https://swagger.io/terms/")
-                        .license(new License().name("Apache 2.0").url("https://springdoc.org")));
+        return new OpenAPI().info(new Info()
+                .title("Volunteer Tracking Application")
+                .version(appVersion)
+                .description(appDescription)
+                .termsOfService("https://swagger.io/terms/")
+                .license(new License().name("Apache 2.0").url("https://springdoc.org")));
     }
 }
